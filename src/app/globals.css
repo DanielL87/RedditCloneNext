@@ -1,13 +1,18 @@
+* {
+  margin: 0;
+}
 #navbar {
   display: flex;
   gap: 10px;
   justify-content: space-around;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #body-container {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin: 10px;
 }
 
 .form-container {
@@ -59,6 +64,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .posts-container {
   flex: 2;
   display: flex;
@@ -73,30 +79,51 @@
   width: 90%;
   box-sizing: border-box;
   margin-right: 10px;
-  border-radius: 10px; /* Rounded edges */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Shadow */
-  background-color: #f5f5f5; /* Background color */
-  transition: transform 0.2s; /* Add a smooth hover effect */
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #f5f5f5;
+  transition: transform 0.2s;
 }
 
 .single-post-container:hover {
   transform: scale(1.02);
 }
 
+.single-post-container2 {
+  display: flex;
+  border: 1px solid grey;
+  padding: 10px;
+  margin-top: 20px;
+  width: 90%;
+  box-sizing: border-box;
+  margin-right: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #f5f5f5;
+  transition: transform 0.2s;
+
+  /* Center horizontally */
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .individual-post {
   display: flex;
   gap: 15px;
   align-items: center;
+  width: 100%;
 }
 
 .post-content {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .post-footer {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .subreddit-name {
@@ -107,11 +134,44 @@
   align-self: flex-end;
 }
 
+.post-buttons {
+  display: flex;
+  margin-top: 15px;
+  gap: 10px;
+}
+
 .votes-container {
   font-size: large;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  gap: 5px;
+  border-right: 1px solid #ccc;
+  padding-right: 10px;
+  height: 100%;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.upvote {
+  order: -1; /* Move upvote to the top */
+}
+
+.downvote {
+  order: 1; /* Move downvote to the bottom */
+}
+
+.button-style {
+  background-color: #3498db; /* Set your preferred background color */
+  color: #ffffff; /* Set your preferred text color */
+  padding: 8px 16px; /* Adjust padding as needed */
+  font-size: 14px; /* Set your preferred font size */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.upvote.voted,
+.downvote.voted {
+  color: orange; /* Change this to your desired color */
+  /* Add other styles for voted state here */
 }

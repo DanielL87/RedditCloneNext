@@ -1,23 +1,22 @@
 import CreatePost from "@/components/CreatePost.jsx";
 import Post from "@/components/Post.jsx";
+import { fetchUser } from "@/lib/fetchUser.js";
 import { prisma } from "@/lib/prisma.js";
 
 export default async function SingleSubreddit({ params }) {
   const { subredditId } = params;
+  const user = await fetchUser();
 
   const subreddit = await prisma.subreddit.findUnique({
     where: { id: subredditId },
     include: {
       posts: {
-        include: { user: true },
+        include: { user: true, votes: true },
         orderBy: { CreatedAt: "desc" },
       },
     },
   });
 
-  // if (!subreddit) {
-  //   subreddit = {};
-  // }
   return (
     <div id="single-subreddit-body">
       <h1>{subreddit.name}</h1>
@@ -29,7 +28,7 @@ export default async function SingleSubreddit({ params }) {
       ) : (
         subreddit.posts.map((post) => (
           <div key={post.id} className="single-post-container">
-            <Post post={post} />
+            <Post post={post} user={user} />
           </div>
         ))
       )}
