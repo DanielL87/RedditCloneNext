@@ -21,7 +21,8 @@ export default async function SingleSubreddit({ params }) {
   return (
     <div id="single-subreddit-body">
       <h1>{subreddit.name}</h1>
-      <CreatePost subreddit={subreddit} />
+      {user.id && <CreatePost subreddit={subreddit} />}
+
       {subreddit.posts.length === 0 ? (
         <div>
           <p>Be the first to post!</p>
