@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation.js";
 import { useState } from "react";
 
-export default function DeletePost({ post, isReply }) {
+export default function DeletePost({ post, isSingle }) {
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -16,7 +16,7 @@ export default function DeletePost({ post, isReply }) {
     if (info.error) {
       return setError(info.error);
     }
-    if (isReply) {
+    if (isSingle) {
       router.push("/");
     }
     router.refresh();

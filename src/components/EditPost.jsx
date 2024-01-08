@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation.js";
 import { useState } from "react";
 
-export default function EditPost({ post, setIsEditing }) {
+export default function EditPost({ post, setIsEditing, isComment }) {
   const [error, setError] = useState("");
   const [title, setTitle] = useState(post.title);
   const [text, setText] = useState(post.text);
@@ -26,8 +26,12 @@ export default function EditPost({ post, setIsEditing }) {
   return (
     <div>
       <form onSubmit={handleEdit} className="form-container">
-        <p>Title:</p>
-        <input onChange={(e) => setTitle(e.target.value)} value={title} />
+        {isComment && (
+          <div>
+            <p>Title:</p>
+            <input onChange={(e) => setTitle(e.target.value)} value={title} />
+          </div>
+        )}
         <p>Text:</p>
         <input onChange={(e) => setText(e.target.value)} value={text} />
         <div>

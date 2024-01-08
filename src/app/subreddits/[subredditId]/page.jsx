@@ -11,6 +11,7 @@ export default async function SingleSubreddit({ params }) {
     where: { id: subredditId },
     include: {
       posts: {
+        where: { parentId: null },
         include: { user: true, votes: true },
         orderBy: { CreatedAt: "desc" },
       },
@@ -28,7 +29,7 @@ export default async function SingleSubreddit({ params }) {
       ) : (
         subreddit.posts.map((post) => (
           <div key={post.id} className="single-post-container">
-            <Post post={post} user={user} />
+            <Post post={post} user={user} isComment={false} isSingle={true} />
           </div>
         ))
       )}

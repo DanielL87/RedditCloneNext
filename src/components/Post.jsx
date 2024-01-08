@@ -4,8 +4,10 @@ import DeletePost from "./DeletePost.jsx";
 import EditPost from "./EditPost.jsx";
 import Link from "next/link.js";
 import { useState } from "react";
+import { CreateComment } from "./CreateComment.jsx";
+import DisplayComments from "./DisplayComments.jsx";
 
-export default function Post({ post, user, isSingle }) {
+export default function Post({ post, user, isSingle, isComment }) {
   const _user = user.id === post.user.id;
   const [isEditing, setIsEditing] = useState(false);
 
@@ -13,7 +15,11 @@ export default function Post({ post, user, isSingle }) {
     <div className="individual-post">
       <Votes post={post} user={user} />
       {isEditing ? (
-        <EditPost post={post} setIsEditing={setIsEditing} />
+        <EditPost
+          post={post}
+          setIsEditing={setIsEditing}
+          isComment={isComment}
+        />
       ) : (
         <div className="post-content">
           {post.title && <p>{post.title}</p>}
@@ -30,14 +36,16 @@ export default function Post({ post, user, isSingle }) {
                 </button>
                 <p></p>
               </div>
-              <DeletePost post={post} isReply={isReply} />
+              <DeletePost post={post} isSingle={isSingle} />
             </div>
           )}
-          {isSingle ? (
-            <div></div>
+          {!isSingle ? (
+            user.id ? (
+              <CreateComment post={post} />
+            ) : null
           ) : (
             <Link href={`/posts/${post.id}`}>
-              <button>Reply</button>
+              <button>Comments</button>
             </Link>
           )}
 

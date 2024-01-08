@@ -7,13 +7,12 @@ export default async function Posts() {
   const user = await fetchUser();
 
   const posts = await prisma.post.findMany({
+    where: { parentId: null },
     include: { subreddit: true, user: true, votes: true, children: true },
     orderBy: {
       CreatedAt: "desc",
     },
   });
-
-  //fetch votes here and pass down
 
   return (
     <div className="posts-container">
@@ -21,7 +20,7 @@ export default async function Posts() {
       {user.id && <CreatePost />}
       {posts.map((post) => (
         <div key={post.id} className="single-post-container">
-          <Post post={post} user={user} />
+          <Post post={post} user={user} isSingle={true} isComment={true} />
         </div>
       ))}
     </div>

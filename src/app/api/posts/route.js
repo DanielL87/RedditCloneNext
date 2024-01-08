@@ -13,7 +13,7 @@ export async function POST(req, res) {
       });
     }
 
-    const { selectedSubredditId, text, title } = await req.json();
+    const { selectedSubredditId, text, title, parentId } = await req.json();
 
     if (!selectedSubredditId || !text) {
       return NextResponse.json({
@@ -28,6 +28,7 @@ export async function POST(req, res) {
         subredditId: selectedSubredditId,
         text,
         title,
+        parentId,
       },
     });
 
