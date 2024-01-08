@@ -30,7 +30,7 @@ export default async function SingleSubreddit({ params }) {
       ) : (
         subreddit.posts.map((post) => (
           <div key={post.id} className="single-post-container">
-            <Post post={post} user={user} isComment={false} isSingle={true} />
+            <Post post={post} user={user} isComment={true} isSingle={true} />
           </div>
         ))
       )}
