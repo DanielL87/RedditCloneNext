@@ -8,6 +8,7 @@ export function CreateComment({ post }) {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  console.log(post);
 
   async function handleSubmit(e) {
     e.preventDefault();
